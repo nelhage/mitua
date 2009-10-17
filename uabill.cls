@@ -6,12 +6,12 @@
 \RequirePackage{ifthen}
 \RequirePackage{graphicx}
 \RequirePackage{ulem}
+\RequirePackage{multicol}
 \RequirePackage[left=1in,bottom=1.5in]{geometry}
 
 \DeclareOption{bill}{\@billtrue}
 \DeclareOption{resolution}{\@resolutiontrue}
 
-\RequirePackage{multicol}
 \DeclareOption{twocolsponsors}{\@twocolsponsorstrue}
 
 \parindent=0em
