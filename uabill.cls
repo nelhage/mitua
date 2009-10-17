@@ -90,12 +90,16 @@
 
 \newcommand{\submitter}[2]{#1\\#2\\\nopagebreak\\\nopagebreak}
 
+\newif\if@auto@and
+\newcommand{\andhere}{; and\global\@auto@andfalse}
+\def\@and{\if@auto@and; and\fi}
+
 \def\@whereas{}
 \newcommand{\whereas}[1]{
   \ifx\@whereas\empty\else
-    \@whereas\ and\par
+    \@whereas\@and\par
   \fi
-  \def\@whereas{\@hang Whereas #1;}}
+  \def\@whereas{\@auto@andtrue\@hang Whereas #1}}
 \newcommand{\@flushwhereas}{\@whereas\par}
 
 \newcommand{\@billverb}{\ClassError{uabill}{Either the ``bill'' or ``resolution'' option is required}}
@@ -110,9 +114,9 @@
 \def\@that{}
 \newcommand{\that}[1]{
   \ifx\@that\empty\else
-    \@that; and\par
+    \@that\@and\par
   \fi
-  \def\@that{\@hang That #1}}
+  \def\@that{\@auto@andtrue\@hang That #1}}
 \newcommand{\@flushthat}{\@that. \par}
 
 \newcommand{\@printauthor}{\@author}
