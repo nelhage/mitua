@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{uabill}[2008/11/15 MIT Undergraduate Association Senate Bill Class]
+\ProvidesClass{uabill}[2009/05/16 MIT Undergraduate Association Senate Bill Class]
 \LoadClass[letterpaper,11pt]{article}
 \RequirePackage{fancyhdr}
 \RequirePackage{hanging}
@@ -8,6 +8,7 @@
 \RequirePackage{ulem}
 \RequirePackage[left=1in,bottom=1.5in]{geometry}
 
+\DeclareOption{bill}{\@billtrue}
 \DeclareOption{resolution}{\@resolutiontrue}
 
 \parindent=0em
@@ -73,7 +74,8 @@
   \def\@whereas{\@hang Whereas #1;}}
 \newcommand{\@flushwhereas}{\@whereas\par}
 
-\newcommand{\@billverb}{enacted}
+\newcommand{\@billverb}{\ClassWarningNoLine{uabill}{Either the ``bill'' or ``resolution'' option is required}}
+\newcommand{\@billtrue}{\renewcommand{\@billverb}{enacted}}
 \newcommand{\@resolutiontrue}{\renewcommand{\@billverb}{resolved}}
 \newcommand{\resolved}{
   \@flushwhereas
