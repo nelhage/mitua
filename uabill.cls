@@ -11,6 +11,9 @@
 \DeclareOption{bill}{\@billtrue}
 \DeclareOption{resolution}{\@resolutiontrue}
 
+\RequirePackage{multicol}
+\DeclareOption{twocolsponsors}{\@twocolsponsorstrue}
+
 \parindent=0em
 \parskip=\baselineskip
 \headheight=70pt
@@ -90,6 +93,9 @@
   \fi
   \def\@that{\@hang That #1}}
 \newcommand{\@flushthat}{\@that. \par}
+
+\newcommand{\@printauthor}{\@author}
+\newcommand{\@twocolsponsorstrue}{\renewcommand{\@printauthor}{\begin{multicols}{2}\@author\end{multicols}}}
 
 \newcommand{\submitted}{
   \@flushthat
