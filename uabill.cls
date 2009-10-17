@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{uabill}[2009/05/16 MIT Undergraduate Association Senate Bill Class]
+\ProvidesClass{uabill}[2009/10/17 MIT Undergraduate Association Senate Bill Class]
 \LoadClass[letterpaper,11pt]{article}
 \RequirePackage{fancyhdr}
 \RequirePackage{hanging}
@@ -31,16 +31,37 @@
     \vspace*{0.75in}\vspace*{-2\baselineskip}
     \small \textsc{Cambridge, Massachusetts 02139 \\ Room W20-401 (617) 253-2696}}}
 
-\newcommand{\@senate}{}
+\newcommand{\@senate}{1\ClassError{uabill}{The session of Senate must be passed in}}
 \newcommand{\senate}[1]{\renewcommand{\@senate}{#1}}
 
 \newcommand{\@bill}{}
 \newcommand{\bill}[1]{\renewcommand{\@bill}{#1}}
 
-\def\@president{}
+% Array support
+\newcommand\declarearray[1]{
+	\expandafter\newcommand\csname#1\endcsname[1]{%
+\ifcsname array@#1@##1\endcsname%
+\csname array@#1@##1\endcsname%
+\else%
+\ClassError{uabill}{Dereferenced undefined element ##1 of #1}%
+\fi
+}
+	\expandafter\newcommand\csname set#1\endcsname[2]{\expandafter\def\csname array@#1@##1\endcsname{##2}}
+}
+
+% UA Officers
+\declarearray{uapres}
+\declarearray{uaspeaker}
+% All
+\setuapres{40}{Noah Jessop '09}
+\setuaspeaker{40}{Jason Forte '09}
+\setuapres{41}{Michael Bennie '10}
+\setuaspeaker{41}{Paul Baranay '11}
+
+\def\@president{\uapres{\@senate}}
 \newcommand{\president}[1]{\renewcommand{\@president}{#1}}
 
-\def\@speaker{}
+\def\@speaker{\uaspeaker{\@senate}}
 \newcommand{\speaker}[1]{\renewcommand{\@speaker}{#1}}
 
 \AtBeginDocument{
