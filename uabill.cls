@@ -77,7 +77,7 @@
   \def\@whereas{\@hang Whereas #1;}}
 \newcommand{\@flushwhereas}{\@whereas\par}
 
-\newcommand{\@billverb}{\ClassWarningNoLine{uabill}{Either the ``bill'' or ``resolution'' option is required}}
+\newcommand{\@billverb}{\ClassError{uabill}{Either the ``bill'' or ``resolution'' option is required}}
 \newcommand{\@billtrue}{\renewcommand{\@billverb}{enacted}}
 \newcommand{\@resolutiontrue}{\renewcommand{\@billverb}{resolved}}
 \newcommand{\resolved}{
