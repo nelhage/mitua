@@ -118,7 +118,10 @@
 \newcommand{\@printauthor}{\@author}
 \newcommand{\@twocolsponsorstrue}{\renewcommand{\@printauthor}{\begin{multicols}{2}\@author\end{multicols}}}
 
+\newif\if@submitted
+
 \newcommand{\submitted}{
+  \@submittedtrue
   \@flushthat
   \par Respectfully submitted, \nopagebreak\par
   \@author 
@@ -144,5 +147,12 @@
   \end{center}
 }
 
+\AtEndDocument{
+  \if@submitted\else
+  \ClassWarningNoLine{uabill}{%
+    You omitted a \protect\submitted\space from the end of your
+    \MessageBreak document. Your document will be missing its footer}
+  \fi
+}
 
 \ProcessOptions
